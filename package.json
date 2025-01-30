@@ -22,5 +22,8 @@
   },
   "jest": {
     "testEnvironment": "jest-environment-jsdom"
+  },
+  "dependencies": {
+    "simple_website": "file:"
   }
 }
