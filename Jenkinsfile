@@ -20,7 +20,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying website...'
-                sh 'cp -r * C:/xampp/htdocs/jenkins_practice/'
+                bat 'cp -r * C:/xampp/htdocs/jenkins_practice/'
             }
         }
     }
