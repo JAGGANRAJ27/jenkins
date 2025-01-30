@@ -20,7 +20,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying website...'
-                bat 'copy -r * C:/xampp/htdocs/jenkins_practice/'
+                bat 'copy -r * C:\\xampp\\htdocs\\jenkins_practice\\'
             }
         }
     }
