@@ -7,14 +7,31 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/JAGGANRAJ27/jenkins.git'
             }
         }
-        stage('Build') {
+         stage('Install Dependencies') {
             steps {
-                echo 'No Build Required for Static Website'
+                script {
+                    powershell '''
+                        npm install
+                    '''
+                }
             }
         }
-        stage('Test') {
+        stage('Run Jest Tests') {
             steps {
-                echo 'Testing HTML, CSS, and JavaScript'
+                script {
+                    powershell '''
+                        npx jest --ci --reporters=default --reporters=jest-junit
+                    '''
+                }
+            }
+        }
+         stage('Run Stylelint') {
+            steps {
+                script {
+                    powershell '''
+                        npx stylelint "**/*.css" --fix
+                    '''
+                }
             }
         }
         stage('Deploy') {
@@ -22,6 +39,17 @@ pipeline {
                 echo 'Deploying website...'
                 bat 'xcopy /E /I /Y * C:\\xampp\\htdocs\\jenkins_practice\\'
             }
+        }
+    }
+     post {
+        always {
+            cleanWs()
+        }
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed. Please check the logs for errors.'
         }
     }
 }
