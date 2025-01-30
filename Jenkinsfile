@@ -7,7 +7,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/JAGGANRAJ27/jenkins.git'
             }
         }
-         stage('Install Dependencies') {
+        stage('Install Dependencies') {
             steps {
                 script {
                     powershell '''
@@ -25,7 +25,7 @@ pipeline {
                 }
             }
         }
-         stage('Run Stylelint') {
+        stage('Run Stylelint') {
             steps {
                 script {
                     powershell '''
@@ -41,7 +41,8 @@ pipeline {
             }
         }
     }
-     post {
+
+    post {
         always {
             cleanWs()
         }
