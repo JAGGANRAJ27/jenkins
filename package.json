@@ -4,7 +4,10 @@
   "description": "simple_website",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "stylelint \"**/*.css\" && htmlhint \"**/*.html\" && npx jest",
+    "csst": "stylelint \"**/*.css\" && node -e \"import('chalk').then(chalk => {console.log(chalk.default.green('Whooo! There are no errors!'))})\" || node -e \"import('chalk').then(chalk => {console.log(chalk.default.red('There were errors!'))})\"",
+    "htmlt": "htmlhint \"**/*.html\"",
+    "jst": "npx jest"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +27,7 @@
     "testEnvironment": "jest-environment-jsdom"
   },
   "dependencies": {
+    "chalk": "^5.4.1",
     "simple_website": "file:"
   }
 }
